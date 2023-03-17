@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('head'); %>
+        <link rel="stylesheet" href="style/list.css">
+</head>
+
+<body>
+    <%- include('navbar'); %>
+
+    <div class="container">
+        <div class="card" id="search-card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <form action="/search">
+                            <div class="input-group" id="search-input">
+                                <input type="text" class="form-control" placeholder="Search for some task...">
+                                <div class="input-group-text" id="btnGroupAddon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-dark btn-lg" id="button-task" data-bs-toggle="modal" data-bs-target="#exampleModal">add task</button>
+                    </div>
+                </div>
+                
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header bg-dark">
+                        <h3>Add task</h3>
+                    </div>
+                        <div class="modal-body bg-dark">
+                            <form action="/confirm" method="POST">
+                            <div class="form-group">
+                                <h5>Title</h5>
+                                
+                                    <input type="text" class="form-control" name="title" placeholder="Name a taks..." required><br>
+
+                                    <h5>Difficulty</h5>
+                                    <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="importance" id="flexRadioDefault1" value="Manhã" checked>
+                                    <label class="form-check-label" for="flexRadioDefault1">Easy</label><br>
+                                    </div>
+                    
+                                    <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="importance" id="flexRadioDefault2" value="Tarde">
+                                    <label class="form-check-label" for="flexRadioDefault2">moderate</label>
+                                    </div>
+                    
+                                    <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="importance" id="flexRadioDefault3" value="Integral">
+                                    <label class="form-check-label" for="flexRadioDefault2">Hard</label>
+                                    </div><br><br>
+                                
+                                <h5>Description</h5>
+                                <textarea class="form-control" nam ="description" placeholder="Describe the task so you don't forget..." id="floatingTextarea" required></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer bg-dark">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" value="Include task">
+                        </div>
+                    </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% if(contagem == 0) {%>
+            <h1 style="color: antiquewhite;">you don't have any tasks registered...</h1>
+        <% }else{ %>
+            <% task.forEach(function(tarefa) { %>
+                <div class="card mt-2">
+                    <div class="card-body">
+                        <h3 class="card-title"><%= tarefa.titulo %></h3>
+                        <h3 class="card-title"><%= tarefa.dificuldade %></h3>
+                        <p class="card-text text-truncate"><%= tarefa.descricao %></p>
+                    </div>
+                </div>
+            <% }) %>
+        <% } %>
+        
+    </div>
+</body>
+</html>

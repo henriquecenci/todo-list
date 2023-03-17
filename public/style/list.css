@@ -1,0 +1,33 @@
+html, body{
+    height: 0%;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background-color: #1C1C1C;
+}
+
+#search-card{
+    margin-top: 30px;
+    height: 85px;
+    background-color: #A9A9A9;
+}
+
+#search-input{
+    margin-left: 10px;
+    height: 50px;
+    width: 170%;
+}
+
+#exampleModal{
+    color: white;
+}
+
+#button-task{
+    margin-left: 76%;
+}
+
+textarea{
+    height: 150px;
+}
