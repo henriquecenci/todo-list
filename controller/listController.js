@@ -1,4 +1,4 @@
-const express = require('express');
+
 const formidable = require('formidable');
 
 con = require("../config/db.js").pool;
@@ -21,10 +21,18 @@ const userController = {
     registerTasks: (req, res) => {
         var form = new formidable.IncomingForm();
         form.parse(req, (err, fields) => {
-            vagaModel.registerTask(fields['importance'], fields['title'], fields['description']);
+            listModel.registerTask(fields['title'], fields['importance'], fields['description']);
         });
 
         res.redirect('/');
+    },
+
+    searchTasks: (req, res, pesquisa) => {
+        var sql = "SELECT * FROM task WHERE titulo LIKE '%"+pesquisa+"%'";
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+            res.render('search.ejs', {task: result})
+        });
     },
 }
 

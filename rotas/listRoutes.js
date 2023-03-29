@@ -7,8 +7,13 @@ const listController = require("../controller/listController.js")
             listController.list(req, res);
         },
 
-        registerTask: (req, res) => {
-            listController.registerTask(req, res);
+        registerTasks: (req, res) => {
+            listController.registerTasks(req, res);
+        },
+
+        searchTasks: (req, res) => {
+            let pesquisa = req.query.pesquisa;
+            listController.searchTasks(req, res, pesquisa);
         },
     }
 

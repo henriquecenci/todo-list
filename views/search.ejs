@@ -33,9 +33,6 @@
             </div>
         </div>
 
-        <% if(contagem == 0) {%>
-            <h1 style="color: antiquewhite;">you don't have any tasks registered...</h1>
-        <% }else{ %>
             <% task.forEach(function(tarefa) { %>
                 <div class="card mt-2">
                     <% if(tarefa.dificuldade == 3){ %>
@@ -67,7 +64,6 @@
                     </div>
                 </div>
             <% }) %>
-        <% } %>
     </div>
 </body>
 </html>

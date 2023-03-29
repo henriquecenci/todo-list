@@ -12,4 +12,11 @@ module.exports = {
             console.log("Numero de registros inseridos: " + result.affectedRows + " " + title);
         });
     },
+
+    searchTask: function(pesquisa){
+        var sql = "SELECT * FROM task WHERE titulo LIKE '%"+pesquisa+"%'";
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+        });
+    },
 }

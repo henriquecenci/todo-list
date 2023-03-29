@@ -8,7 +8,6 @@ app.use( express.static("public") );
 
 app.use(session({ secret: '2C44-4D44-WppQ38S', resave: false, saveUninitialized: true }));
 
-const listController = require("./controller/listController.js")
 const listRoutes = require("./rotas/listRoutes.js")
 
 con = require("./config/db.js").pool;
@@ -18,7 +17,11 @@ app.get('/', function (req, res) {
 });
 
 app.post('/confirm', function (req, res) {
-    listController.registerTasks(req, res);
+    listRoutes.registerTasks(req, res);
+});
+
+app.get('/search', function (req, res) {
+    listRoutes.searchTasks(req, res);
 });
 //-------------------------------------------------
 app.listen(80, function () {
